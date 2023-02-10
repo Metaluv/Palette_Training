@@ -1,4 +1,8 @@
-# Palette_Training
+![alt text](PaletteSkills_Banner.png "Banner")
+
+
+
+# Palette Training - GIS & Data Science
  A notebook of the training for data science from Palette Skills
 
  ## 📖 Background
