@@ -3,7 +3,7 @@
 
 
 # Palette Training - GIS & Data Science
- A notebook of the training for data science from Palette Skills
+ A notebook of the training for data science from Palette Skills the instructor for this program is https://github.com/ruhidm
 
  ## 📖 Background
 
