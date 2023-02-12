@@ -1,1 +1,0 @@
-# Palette_Training_3
