@@ -1,1 +1,1 @@
-# Palette_training_2
+# Palette_Training_2
