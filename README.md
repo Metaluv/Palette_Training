@@ -1,4 +1,4 @@
-![alt text](PaletteSkills_Banner.png "Banner")
+![alt text](Training_Material/PaletteSkills_Banner.png "Banner")
 
 
 
@@ -13,4 +13,4 @@ I am attending the Automation and Digital Agriculture Specialist Program from Pa
 
 In the following experiences we explored dataset related to the agriculture industry which include dataset of RM information and crop yields. We applied different machine learning models on the data and extracted key findings to present to keystake holders of a industry. 
 
-![alt text](output.png "Map EDA")
+![alt text](Training_Material/output.png "Map EDA")

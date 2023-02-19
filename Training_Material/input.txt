@@ -1,0 +1,13 @@
+Year	RM	Winter Wheat	Canola	Spring Wheat	Mustard	Durum	Sunflowers	Oats	Lentils	Peas	Barley	Fall Rye	Canary Seed	Spring Rye	Tame Hay	Flax	Chickpeas
+0	1938	1	NaN	NaN	4.00	NaN	NaN	NaN	1.00	NaN	NaN	1.0	NaN	NaN	NaN	NaN	0.0	NaN
+1	1939	1	NaN	NaN	9.00	NaN	NaN	NaN	16.00	NaN	NaN	16.0	NaN	NaN	NaN	NaN	0.0	NaN
+2	1940	1	NaN	NaN	12.00	NaN	NaN	NaN	23.00	NaN	NaN	19.0	NaN	NaN	NaN	NaN	8.0	NaN
+3	1941	1	NaN	NaN	18.00	NaN	NaN	NaN	32.00	NaN	NaN	28.0	NaN	NaN	NaN	NaN	5.0	NaN
+4	1942	1	NaN	NaN	20.00	NaN	NaN	NaN	35.00	NaN	NaN	28.0	14.0	NaN	NaN	NaN	5.0	NaN
+...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...
+25012	2017	622	NaN	43.06	59.49	NaN	NaN	NaN	93.01	NaN	43.6	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+25013	2018	622	NaN	39.30	59.50	NaN	NaN	NaN	96.40	NaN	43.0	54.0	NaN	NaN	NaN	NaN	NaN	NaN
+25014	2019	622	NaN	46.10	63.90	NaN	NaN	NaN	106.00	NaN	33.7	73.9	NaN	NaN	NaN	NaN	NaN	NaN
+25015	2020	622	NaN	40.90	55.10	NaN	NaN	NaN	94.50	NaN	49.2	74.3	NaN	NaN	NaN	NaN	NaN	NaN
+25016	2021	622	NaN	23.90	17.00	NaN	NaN	NaN	25.80	NaN	NaN	23.3	NaN	NaN	NaN	NaN	NaN	NaN
+
