@@ -1,0 +1,48 @@
+
+# Preprocessing 
+
+from sklearn.preprocessing import MinMaxScaler
+
+# Split data into training and test set 
+
+from sklearn.model_selection import train_test_split
+
+X = df.drop(['geometry'], axis=1) 
+y = df['geometry']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Standardize the data 
+
+scaler = MinMaxScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Select and train a machine learning model 
+
+from sklearn.linear_model import LinearRegression
+
+model = LinearRegression()
+model.fit(X_train_scaled, y_train)
+
+# Evaluate the model
+
+from sklearn.metrics import mean_squared_error
+
+y_pred = model.predict(X_test_scaled)
+mse = mean_squared_error(y_test, y_pred)
+
+# Fine-tune the model 
+
+from sklearn.model_selection import GridSearchCV
+
+param_grid = {'alpha': [0.1,1, 10, 100]}
+grid = GridSearchCV(Ridge(), param_grid, cv=3)
+grid.fit(X_train_scaled, y_train)
+
+print(grid.best_params_)
+
+# Best parameter 
+
+best_params = grid.best_params_ 
+print(best_params)

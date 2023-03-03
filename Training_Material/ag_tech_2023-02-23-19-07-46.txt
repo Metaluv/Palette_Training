@@ -1,0 +1,49 @@
+
+# Suggested Changes
+
+import pandas as pd
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+df=df_ms.copy()
+
+# Define the features to be used for clustering
+X = df[['WinterWheat_mean', 'Canola_mean', 'SpringWheat_mean',
+       'Mustard_mean', 'Durum_mean', 'Sunflowers_mean', 'Oats_mean',
+       'Lentils_mean', 'Peas_mean', 'Barley_mean', 'FallRye_mean',
+       'CanarySeed_mean', 'SpringRye_mean', 'TameHay_mean', 'Flax_mean',
+       'Chickpeas_mean', 'WinterWheat_std', 'Canola_std', 'SpringWheat_std',
+       'Mustard_std', 'Durum_std', 'Sunflowers_std', 'Oats_std', 'Lentils_std',
+       'Peas_std', 'Barley_std', 'FallRye_std', 'CanarySeed_std',
+       'SpringRye_std', 'TameHay_std', 'Flax_std', 'Chickpeas_std']]
+
+# Normalize the features
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler().fit(X)
+X = scaler.transform(X)
+
+# Elbow method to determine the optimal number of clusters
+sse = []
+for k in range(1, 11):
+    kmeans = KMeans(n_clusters=k)
+    kmeans.fit(X)
+    sse.append(kmeans.inertia_)
+
+# Plot the elbow graph
+plt.plot(range(1, 11), sse)
+plt.xlabel('Number of Clusters')
+plt.ylabel('Sum of Squared Distances')
+plt.show()
+
+# Fit the KMeans model with the optimal number of clusters
+kmeans = KMeans(n_clusters=4)
+kmeans.fit(X)
+
+# Predict the cluster labels for each data point
+labels = kmeans.predict(X)
+
+# Plot the data points and cluster centers
+plt.scatter(X[:, 0], X[:, 16], c=labels)
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 16], marker='x', s=200, linewidths=3, color='r')
+plt.xlabel('Canola_mean')
+plt.ylabel('Canola_std')
+plt.show()

@@ -1,13 +1,42 @@
-Year	RM	Winter Wheat	Canola	Spring Wheat	Mustard	Durum	Sunflowers	Oats	Lentils	Peas	Barley	Fall Rye	Canary Seed	Spring Rye	Tame Hay	Flax	Chickpeas
-0	1938	1	NaN	NaN	4.00	NaN	NaN	NaN	1.00	NaN	NaN	1.0	NaN	NaN	NaN	NaN	0.0	NaN
-1	1939	1	NaN	NaN	9.00	NaN	NaN	NaN	16.00	NaN	NaN	16.0	NaN	NaN	NaN	NaN	0.0	NaN
-2	1940	1	NaN	NaN	12.00	NaN	NaN	NaN	23.00	NaN	NaN	19.0	NaN	NaN	NaN	NaN	8.0	NaN
-3	1941	1	NaN	NaN	18.00	NaN	NaN	NaN	32.00	NaN	NaN	28.0	NaN	NaN	NaN	NaN	5.0	NaN
-4	1942	1	NaN	NaN	20.00	NaN	NaN	NaN	35.00	NaN	NaN	28.0	14.0	NaN	NaN	NaN	5.0	NaN
-...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...
-25012	2017	622	NaN	43.06	59.49	NaN	NaN	NaN	93.01	NaN	43.6	NaN	NaN	NaN	NaN	NaN	NaN	NaN
-25013	2018	622	NaN	39.30	59.50	NaN	NaN	NaN	96.40	NaN	43.0	54.0	NaN	NaN	NaN	NaN	NaN	NaN
-25014	2019	622	NaN	46.10	63.90	NaN	NaN	NaN	106.00	NaN	33.7	73.9	NaN	NaN	NaN	NaN	NaN	NaN
-25015	2020	622	NaN	40.90	55.10	NaN	NaN	NaN	94.50	NaN	49.2	74.3	NaN	NaN	NaN	NaN	NaN	NaN
-25016	2021	622	NaN	23.90	17.00	NaN	NaN	NaN	25.80	NaN	NaN	23.3	NaN	NaN	NaN	NaN	NaN	NaN
+import pandas as pd
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+df=df_ms.copy()
+
+# Define the features to be used for clustering
+X = df[['WinterWheat_mean', 'Canola_mean', 'SpringWheat_mean',
+       'Mustard_mean', 'Durum_mean', 'Sunflowers_mean', 'Oats_mean',
+       'Lentils_mean', 'Peas_mean', 'Barley_mean', 'FallRye_mean',
+       'CanarySeed_mean', 'SpringRye_mean', 'TameHay_mean', 'Flax_mean',
+       'Chickpeas_mean', 'WinterWheat_std', 'Canola_std', 'SpringWheat_std',
+       'Mustard_std', 'Durum_std', 'Sunflowers_std', 'Oats_std', 'Lentils_std',
+       'Peas_std', 'Barley_std', 'FallRye_std', 'CanarySeed_std',
+       'SpringRye_std', 'TameHay_std', 'Flax_std', 'Chickpeas_std']]
+
+# Elbow method to determine the optimal number of clusters
+sse = []
+for k in range(1, 11):
+    kmeans = KMeans(n_clusters=k)
+    kmeans.fit(X)
+    sse.append(kmeans.inertia_)
+
+# Plot the elbow graph
+plt.plot(range(1, 11), sse)
+plt.xlabel('Number of Clusters')
+plt.ylabel('Sum of Squared Distances')
+plt.show()
+
+# Fit the KMeans model with the optimal number of clusters
+kmeans = KMeans(n_clusters=4)
+kmeans.fit(X)
+
+# Predict the cluster labels for each data point
+labels = kmeans.predict(X)
+
+# Plot the data points and cluster centers
+plt.scatter(X.iloc[:, 0], X.iloc[:, 16], c=labels)
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 16], marker='x', s=200, linewidths=3, color='r')
+plt.xlabel('Canola_mean')
+plt.ylabel('Canola_std')
+plt.show()
 
