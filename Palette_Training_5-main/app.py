@@ -94,10 +94,7 @@ def main():
     
     st.title("Saskatchewan Crop Yield Forecast")
 
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Temperature", "70 °F", "1.2 °F")
-    col2.metric("Wind", "9 mph", "-8%")
-    col3.metric("Humidity", "86%", "4%")
+    
 
     df = load_data()
     df = impute_missing_values(df)
@@ -113,6 +110,11 @@ def main():
     display_forecast(rm, crop, time_series_filled_results)
     forecast_plot = plot_forecast(rm, crop, time_series_filled_results)
     st.pyplot(forecast_plot)
+
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Temperature", "70 °F", "1.2 °F")
+    col2.metric("Wind", "9 mph", "-8%")
+    col3.metric("Humidity", "86%", "4%")
 
 if __name__ == "__main__":
     main()
