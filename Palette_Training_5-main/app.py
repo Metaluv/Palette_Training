@@ -93,9 +93,9 @@ def plot_forecast(rm, crop, time_series_filled_results):
 def main():
     
     st.title("Saskatchewan Crop Yield Forecast")
+    st.write("This app predicts the yield of a crop in a given RM for the next 5 years.")
 
     
-
     df = load_data()
     df = impute_missing_values(df)
     unique_rms = df['RM'].unique()
