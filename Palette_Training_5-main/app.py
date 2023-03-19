@@ -106,6 +106,7 @@ def main():
     crops = ['Winter Wheat', 'Canola', 'Spring Wheat', 'Oats', 'Barley', 'Fall Rye', 'Flax']
     rm = st.selectbox("Select RM:", unique_rms)
     crop = st.selectbox("Select crop:", crops)
+    year = st.selectbox("Select year:", df['Year'].unique())
 
     display_forecast(rm, crop, time_series_filled_results)
     forecast_plot = plot_forecast(rm, crop, time_series_filled_results)
