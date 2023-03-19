@@ -2,9 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import geopandas as gpd
-import io
-import zipfile
-import requests
+import os
 from prophet import Prophet
 from datetime import datetime
 from statsmodels.tsa.seasonal import STL
@@ -23,7 +21,8 @@ def load_data():
 
 def load_merged_data():
     # Read in geo data
-    geo_df = gpd.read_file('Rural_Municipality/Rural_Municipality.shp')
+    shapefile_path = os.path.join('Rural_Municipality', 'Rural_Municipality.shp')
+    geo_df = gpd.read_file(shapefile_path)
     geo_df.rename(columns={'RMNO': 'RM',}, inplace=True)
     geo_df['RM'] = geo_df['RM'].astype('int64')
 
@@ -124,7 +123,7 @@ def plot_choropleth_map(merged, crop, year):
 
 def main():
     # add title and image
-    st.set_page_config(page_title="Saskatchewan Crop Yield Forecast", page_icon=":seedling:", layout="wide")
+    st.set_page_config(page_title="Saskatchewan Crop Yield Forecast", page_icon=":seedling:")
 
     #st.image("PaletteSkills_Banner.png")
     st.title("Saskatchewan Crop Yield Forecast")
