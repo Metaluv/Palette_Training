@@ -22,7 +22,11 @@ geo_df.rename(columns={'RMNO': 'RM',}, inplace=True)
 # change the data type of the RM column in the geo_df to int64
 geo_df['RM'] = geo_df['RM'].astype('int64')
 
-merged = geo_df.merge(DATA_PATH, on='RM', how='left')
+# Read the data from the URL
+data_df = pd.read_csv(DATA_PATH)
+
+# Merge the dataframes
+merged = geo_df.merge(data_df, on='RM', how='left')
 
 def load_data():
     return pd.read_csv(DATA_PATH)
