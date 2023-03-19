@@ -7,6 +7,5 @@ statsmodels
 geopandas
 fiona
 pygeos
-GDAL
 shapely
 plotly
