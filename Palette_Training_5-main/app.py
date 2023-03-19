@@ -127,7 +127,7 @@ def main():
     st.set_page_config(page_title="Saskatchewan Crop Yield Forecast", page_icon=":seedling:", layout="wide")
     st.markdown("<style>body{background-color: #F5F5F5;}</style>", unsafe_allow_html=True)
 
-    #st.image("Training_Material/PaletteSkills_Banner.png")
+    st.image("PaletteSkills_Banner.png")
     st.title("Saskatchewan Crop Yield Forecast")
     st.write("This app predicts the yield of a crop in a given RM for the next 5 years. The objective of this assignment is to provide hands-on experience in data science, including data cleaning, exploratory data analysis, and time series forecasting. The data used in this app is from the [Saskatchewan Crop Production Service](https://dashboard.saskatchewan.ca/agriculture/rm-yields/rm-yields-data). Crop yields by Rural Municipality (R.M.) are produced annually with data from the Ministry of Saskatchewan Crop Report and Saskatchewan Crop Insurance Corporation. Yields are available for each RM as long as there are no confidentiality concerns. The data is available from 1938 to 2021.")
 
