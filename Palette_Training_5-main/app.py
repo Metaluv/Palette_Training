@@ -91,7 +91,8 @@ def plot_forecast(rm, crop, time_series_filled_results):
     
 
 def main():
-    
+
+    st.write("Training_Material/PaletteSkills_Banner.png")
     st.title("Saskatchewan Crop Yield Forecast")
     st.write("This app predicts the yield of a crop in a given RM for the next 5 years.")
 
