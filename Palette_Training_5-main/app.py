@@ -125,7 +125,6 @@ def plot_choropleth_map(merged, crop, year):
 def main():
     # add title and image
     st.set_page_config(page_title="Saskatchewan Crop Yield Forecast", page_icon=":seedling:", layout="wide")
-    st.markdown("<style>body{background-color: #F5F5F5;}</style>", unsafe_allow_html=True)
 
     #st.image("PaletteSkills_Banner.png")
     st.title("Saskatchewan Crop Yield Forecast")
@@ -140,7 +139,7 @@ def main():
     time_series_filled_results = prepare_time_series_filled_results(filtered_df, unique_rms)
     
     crops = ['Winter Wheat', 'Canola', 'Spring Wheat', 'Oats', 'Barley', 'Fall Rye', 'Flax']
-    
+
     crop = st.radio("Select crop:", crops)
     rm = st.selectbox("Select RM:", unique_rms)
     year = st.selectbox("Select year:", df['Year'].unique())
