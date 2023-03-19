@@ -7,5 +7,6 @@ statsmodels
 geopandas
 fiona
 requests
-io
-zipfile
+folium
+plotly
+streamlit_folium
