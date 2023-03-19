@@ -91,10 +91,13 @@ def plot_forecast(rm, crop, time_series_filled_results):
     
 
 def main():
-
+    # add title and image
+    st.set_page_config(page_title="Saskatchewan Crop Yield Forecast", page_icon=":seedling:", layout="wide")
+    st.markdown("<style>body{background-color: #F5F5F5;}</style>", unsafe_allow_html=True)
+    
     st.write("Training_Material/PaletteSkills_Banner.png")
     st.title("Saskatchewan Crop Yield Forecast")
-    st.write("This app predicts the yield of a crop in a given RM for the next 5 years.")
+    st.write("This app predicts the yield of a crop in a given RM for the next 5 years. The objective of this assignment is to provide hands-on experience in data science, including data cleaning, exploratory data analysis, and time series forecasting. The data used in this app is from the [Saskatchewan Crop Production Service](https://www.agriculture.gov.sk.ca/crops/crop-statistics).")
 
     
     df = load_data()
