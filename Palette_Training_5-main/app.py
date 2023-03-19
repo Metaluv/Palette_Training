@@ -19,7 +19,7 @@ def load_data():
     return pd.read_csv(DATA_PATH)
 
 def load_merged_data():
-    geo_df = gpd.read_file('https://raw.githubusercontent.com/Metaluv/Palette_Training/main/Palette_Training_5-main/Rural_Municipality/Rural_Municipality.shp')
+    geo_df = gpd.read_file('Rural_Municipality/Rural_Municipality.shp')
     geo_df.rename(columns={'RMNO': 'RM',}, inplace=True)
     geo_df['RM'] = geo_df['RM'].astype('int64')
 
