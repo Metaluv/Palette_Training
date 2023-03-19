@@ -22,16 +22,8 @@ def load_data():
     return pd.read_csv(DATA_PATH)
 
 def load_merged_data():
-    # Download the shapefile and its associated files
-    url = 'https://raw.githubusercontent.com/Metaluv/Palette_Training/main/Palette_Training_5-main/Rural_Municipality.zip'
-    response = requests.get(url)
-    
-    # Read the zip file from memory
-    with zipfile.ZipFile(io.BytesIO(response.content)) as zip_file:
-        with zip_file.open('Rural_Municipality/Rural_Municipality.shp') as shp_file:
-            # Read the shapefile using geopandas
-            geo_df = gpd.read_file(shp_file)
-            
+    # Read in geo data
+    geo_df = gpd.read_file('Rural_Municipality/Rural_Municipality.shp')
     geo_df.rename(columns={'RMNO': 'RM',}, inplace=True)
     geo_df['RM'] = geo_df['RM'].astype('int64')
 
