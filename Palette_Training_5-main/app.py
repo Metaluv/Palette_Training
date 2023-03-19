@@ -147,7 +147,7 @@ def main():
 
     # Plot the choropleth map
     merged = load_merged_data()  # Load the merged DataFrame (you need to create the load_merged_data function to load the merged data)
-    choropleth_map = plot_choropleth_map(merged, crop)
+    choropleth_map = plot_choropleth_map(merged, crops)
     st.pyplot(choropleth_map)
 
     col1, col2, col3 = st.columns(3)
