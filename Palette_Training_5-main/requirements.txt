@@ -6,8 +6,4 @@ prophet
 statsmodels
 geopandas
 fiona
-requests
-folium
-plotly
-streamlit_folium
 pygeos
