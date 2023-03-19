@@ -106,12 +106,15 @@ def plot_forecast(rm, crop, time_series_filled_results):
     plt.legend()
     return fig
 
-def plot_choropleth_map(merged, crop):
+def plot_choropleth_map(merged, crop, year):
+    # Filter the merged DataFrame based on the specified year
+    merged = merged[merged['Year'] == year]
+    
     vmin, vmax = merged[crop].min(), merged[crop].max()
     fig, ax = plt.subplots(1, figsize=(10, 6))
     merged.plot(column=crop, cmap='Oranges', linewidth=0.8, ax=ax, edgecolor='0.8')
     ax.axis('off')
-    ax.set_title(f'{crop} Yield in Saskatchewan Rural Municipalities\n', fontdict={'fontsize': '15', 'fontweight' : '3'})
+    ax.set_title(f'{crop} Yield in Saskatchewan Rural Municipalities ({year})\n', fontdict={'fontsize': '15', 'fontweight' : '3'})
     ax.annotate('Source: Saskatchewan Ministry of Agriculture', xy=(0.1, .08), xycoords='figure fraction', horizontalalignment='left', verticalalignment='top', fontsize=12, color='#555555')
     sm = plt.cm.ScalarMappable(cmap='Oranges', norm=plt.Normalize(vmin=vmin, vmax=vmax))
     sm._A = []
@@ -147,7 +150,7 @@ def main():
 
     # Plot the choropleth map
     merged = load_merged_data()  # Load the merged DataFrame (you need to create the load_merged_data function to load the merged data)
-    choropleth_map = plot_choropleth_map(merged, crop)
+    choropleth_map = plot_choropleth_map(merged, crop, year)
     st.pyplot(choropleth_map)
 
     col1, col2, col3 = st.columns(3)
