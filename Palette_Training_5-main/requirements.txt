@@ -7,5 +7,3 @@ statsmodels
 geopandas
 fiona
 pygeos
-shapely
-plotly

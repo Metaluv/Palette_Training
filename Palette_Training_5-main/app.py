@@ -140,8 +140,9 @@ def main():
     time_series_filled_results = prepare_time_series_filled_results(filtered_df, unique_rms)
     
     crops = ['Winter Wheat', 'Canola', 'Spring Wheat', 'Oats', 'Barley', 'Fall Rye', 'Flax']
+    
+    crop = st.radio("Select crop:", crops)
     rm = st.selectbox("Select RM:", unique_rms)
-    crop = st.selectbox("Select crop:", crops)
     year = st.selectbox("Select year:", df['Year'].unique())
 
     display_forecast(rm, crop, time_series_filled_results)
