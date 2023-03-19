@@ -6,6 +6,6 @@ prophet
 statsmodels
 geopandas
 fiona
-request
+requests
 io
 zipfile
