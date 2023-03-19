@@ -5,3 +5,4 @@ numpy
 prophet
 statsmodels
 geopandas
+fiona
