@@ -128,6 +128,11 @@ def main():
     forecast_plot = plot_forecast(rm, crop, time_series_filled_results)
     st.pyplot(forecast_plot)
 
+    # Plot the choropleth map
+    merged = load_merged_data()  # Load the merged DataFrame (you need to create the load_merged_data function to load the merged data)
+    choropleth_map = plot_choropleth_map(merged, crop)
+    st.pyplot(choropleth_map)
+
     col1, col2, col3 = st.columns(3)
     col1.metric("Temperature", "70 °F", "1.2 °F")
     col2.metric("Wind", "9 mph", "-8%")
