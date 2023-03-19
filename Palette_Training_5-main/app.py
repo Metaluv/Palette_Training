@@ -12,7 +12,7 @@ import warnings
 warnings.simplefilter(action='ignore', category=ValueWarning)
 
 # Read in geo data
-geo_df = gpd.read_file('Rural Municipality\Rural Municipality.shp')
+geo_df = gpd.read_file('Palette_Training_5-main/Rural Municipality/Rural Municipality.shp')
 
 DATA_PATH = "https://raw.githubusercontent.com/Metaluv/Palette_Training/main/Palette_Training_5-main/data/rm-yields-data.csv"
 
