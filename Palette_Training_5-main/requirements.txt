@@ -7,3 +7,9 @@ statsmodels
 geopandas
 fiona
 pygeos
+gdal
+shapely
+pyproj
+pyarrow
+pydeck
+plotly
