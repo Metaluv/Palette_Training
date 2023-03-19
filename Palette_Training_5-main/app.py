@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import geopandas as gpd
 from prophet import Prophet
 from datetime import datetime
 from statsmodels.tsa.seasonal import STL
@@ -88,6 +89,17 @@ def plot_forecast(rm, crop, time_series_filled_results):
     plt.legend()
     return fig
 
+def plot_choropleth_map(merged, crop):
+    vmin, vmax = merged[crop].min(), merged[crop].max()
+    fig, ax = plt.subplots(1, figsize=(10, 6))
+    merged.plot(column=crop, cmap='Oranges', linewidth=0.8, ax=ax, edgecolor='0.8')
+    ax.axis('off')
+    ax.set_title(f'{crop} Yield in Saskatchewan Rural Municipalities\n', fontdict={'fontsize': '15', 'fontweight' : '3'})
+    ax.annotate('Source: Saskatchewan Ministry of Agriculture', xy=(0.1, .08), xycoords='figure fraction', horizontalalignment='left', verticalalignment='top', fontsize=12, color='#555555')
+    sm = plt.cm.ScalarMappable(cmap='Oranges', norm=plt.Normalize(vmin=vmin, vmax=vmax))
+    sm._A = []
+    cbar = fig.colorbar(sm)
+    return fig
     
 
 def main():
@@ -97,7 +109,7 @@ def main():
 
     st.image("Training_Material/PaletteSkills_Banner.png")
     st.title("Saskatchewan Crop Yield Forecast")
-    st.write("This app predicts the yield of a crop in a given RM for the next 5 years. The objective of this assignment is to provide hands-on experience in data science, including data cleaning, exploratory data analysis, and time series forecasting. The data used in this app is from the [Saskatchewan Crop Production Service](https://dashboard.saskatchewan.ca/agriculture/rm-yields/rm-yields-data).Crop yields by Rural Municipality (R.M.) are produced annually with data from the Ministry of Saskatchewan Crop Report and Saskatchewan Crop Insurance Corporation. Yields are available for each RM as long as there are no confidentiality concerns. The data is available from 1938 to 2021.")
+    st.write("This app predicts the yield of a crop in a given RM for the next 5 years. The objective of this assignment is to provide hands-on experience in data science, including data cleaning, exploratory data analysis, and time series forecasting. The data used in this app is from the [Saskatchewan Crop Production Service](https://dashboard.saskatchewan.ca/agriculture/rm-yields/rm-yields-data). Crop yields by Rural Municipality (R.M.) are produced annually with data from the Ministry of Saskatchewan Crop Report and Saskatchewan Crop Insurance Corporation. Yields are available for each RM as long as there are no confidentiality concerns. The data is available from 1938 to 2021.")
 
     
     df = load_data()
