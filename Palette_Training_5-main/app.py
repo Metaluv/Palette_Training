@@ -181,7 +181,7 @@ def main():
     # add title and image
     st.set_page_config(page_title="Saskatchewan Crop Yield Forecast", page_icon=":seedling:")
 
-    #st.image("PaletteSkills_Banner.png")
+    st.image("PaletteSkills_Banner.png")
     st.title("Saskatchewan Crop Yield Forecast")
     st.write("This app predicts the yield of a crop in a given RM for the next 5 years. The objective of this assignment is to provide hands-on experience in data science, including data cleaning, exploratory data analysis, and time series forecasting. The data used in this app is from the [Saskatchewan Crop Production Service](https://dashboard.saskatchewan.ca/agriculture/rm-yields/rm-yields-data). Crop yields by Rural Municipality (R.M.) are produced annually with data from the Ministry of Saskatchewan Crop Report and Saskatchewan Crop Insurance Corporation. Yields are available for each RM as long as there are no confidentiality concerns. The data is available from 1938 to 2021.")
 
@@ -197,7 +197,7 @@ def main():
 
     crop = st.radio("Select crop:", crops)
     rm = st.selectbox("Select RM:", unique_rms)
-    year = st.selectbox("Select year:", df['Year'].unique())
+    year = st.selectbox("Select year: (for the choropleth map - local only)", df['Year'].unique())
 
     display_forecast(rm, crop, time_series_filled_results)
     forecast_plot = plot_forecast(rm, crop, time_series_filled_results)
