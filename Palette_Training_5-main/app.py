@@ -119,6 +119,46 @@ def plot_choropleth_map(merged, crop, year):
     sm._A = []
     cbar = fig.colorbar(sm)
     return fig
+
+def load_crop_data(crop):
+    base_url = 'https://raw.githubusercontent.com/Metaluv/Palette_Training/main/Palette_Training_5-main/data/'
+    crop_filename = {
+        'Winter Wheat': 'wheat.csv',
+        'Canola': 'canola.csv',
+        'Spring Wheat': 'wheat.csv',
+        'Oats': 'oats.csv',
+        'Barley': 'barley.csv',
+        'Fall Rye': 'mustard.csv',
+        'Flax': 'flax.csv'
+    }
+    file_url = base_url + crop_filename[crop]
+    data = pd.read_csv(file_url)
+    return data
+
+def plot_forecast(crop, window=3):
+    data = load_crop_data(crop)
+    series = data[['Date', f'{crop} 1CAN ($ per tonne)']]
+    series.columns = ['ds', 'y']
+    series['ds'] = pd.to_datetime(series['ds'])
+
+    rolling_mean = series['y'].rolling(window=window).mean()
+    rolling_std = series['y'].rolling(window=window).std()
+
+    model = Prophet()
+    model.fit(series)
+    future = model.make_future_dataframe(periods=(2027 - 2022 + 1), freq='Y')
+    forecast = model.predict(future)
+
+    fig, ax = plt.subplots(figsize=(12, 8))
+    ax.plot(series['ds'], series['y'], label='Observed')
+    ax.plot(series['ds'], rolling_mean, label='Rolling Mean', color='red')
+    ax.plot(series['ds'], rolling_std, label='Rolling Std', color='green')
+    ax.plot(future['ds'], forecast['yhat'], label='Forecasted', linestyle='--')
+    ax.set_xlabel('Year')
+    ax.set_ylabel(f'Price per tonne')
+    ax.set_title(f'Prophet Forecast for {crop} with Rolling Mean and Std')
+    plt.legend()
+    return fig
     
 
 def main():
@@ -137,7 +177,7 @@ def main():
     filtered_df = df[(df['Year'] >= 1938) & (df['Year'] <= 2021)]
     time_series_filled_results = prepare_time_series_filled_results(filtered_df, unique_rms)
     
-    crops = ['Winter Wheat', 'Canola', 'Spring Wheat', 'Oats', 'Barley', 'Fall Rye', 'Flax']
+    crops = ['Winter Wheat', 'Canola', 'Spring Wheat', 'Mustard', 'Durum', 'Sunflowers', 'Oats', 'Lentils', 'Peas', 'Barley', 'Fall Rye', 'Canary Seed', 'Spring Rye', 'Tame Hay', 'Flax', 'Chickpeas']
 
     crop = st.radio("Select crop:", crops)
     rm = st.selectbox("Select RM:", unique_rms)
@@ -151,6 +191,10 @@ def main():
     merged = load_merged_data()  # Load the merged DataFrame (you need to create the load_merged_data function to load the merged data)
     choropleth_map = plot_choropleth_map(merged, crop, year)
     st.pyplot(choropleth_map)
+
+    # Call the plot_forecast function with the crop argument
+    rolling_mean_std_plot = plot_forecast(crop)
+    st.pyplot(rolling_mean_std_plot)
 
     col1, col2, col3 = st.columns(3)
     col1.metric("Temperature", "70 °F", "1.2 °F")
